@@ -1,4 +1,5 @@
 var reactions = ["Excited", "Facepalm", "OMG", "Confused", "amazing"];
+var favorites = [];
 
 function createButtons() {
 
@@ -30,11 +31,6 @@ function displayGifs() {
             let newGifDiv = $("<div>");
             newGifDiv.addClass("float-left m-2 border rounded p-2");
 
-            // let title = $("<p>");
-            // title.text(response.data[i].title);
-            // title.addClass("card-title");
-            // newGifDiv.append(title);
-
             let gif = $("<img>");
             gif.addClass("gif");
             gif.attr("width", "150");
@@ -62,11 +58,32 @@ function displayGifs() {
             aTag.append(downloadBtn);
             newGifDiv.append(aTag);
 
+            var fav = $("<button>");
+            fav.addClass("fav glyphicon glyphicon-star-empty btn btn-lg");
+            fav.attr("data-still", response.data[i].images.original_still.url);
+            fav.attr("data-animate", response.data[i].images.original.url);
+            fav.attr("data-toggle", "tooltip");
+            fav.attr("data-placement", "top");
+            fav.attr("title", "Add to favorites!");
+            newGifDiv.append(fav);
+
             $("#gifs-appear-here").append(newGifDiv);
         }
 
     });
 
+}
+
+function updateFavorites() {
+    $(".favorites").empty();
+    for (let i = 0; i < favorites.length; i++) {
+        var newFav = $("<img>");
+        newFav.attr("src", favorites[i]);
+        newFav.attr("width", "150");
+        newFav.attr("height", "150");
+        newFav.addClass("m-1")
+        $(".favorites").append(newFav);
+    }
 }
 
 setInterval(function () {
@@ -77,6 +94,7 @@ setInterval(function () {
 
 $(document).ready(function () {
     createButtons();
+    $("#fav-div").hide();
 
     $("#add-reaction").on("click", function () {
 
@@ -104,8 +122,11 @@ $(document).ready(function () {
         }
     });
 
-    $(document).on('click', '.download', function () {
-        var downloadId = $(this).attr("data-url");
-        console.log("url is: " + downloadId);
+    $(document).on('click', '.fav', function () {
+        $("#fav-div").show();
+        if ((favorites.indexOf($(this).attr("data-animate"))) < 0) {
+            favorites.push($(this).attr("data-animate"));
+        }
+        updateFavorites();
     });
 });
