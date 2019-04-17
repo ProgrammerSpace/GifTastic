@@ -1,4 +1,4 @@
-var reactions = ["Excited", "Facepalm", "OMG", "Confused", "amazing"];
+var reactions = ["excited", "facepalm", "omg", "confused", "amazing"];
 var favorites = [];
 
 function createButtons() {
@@ -94,13 +94,19 @@ setInterval(function () {
 
 $(document).ready(function () {
     createButtons();
-    // $("#fav-div").hide();
 
     $("#add-reaction").on("click", function () {
 
         event.preventDefault();
-        let newReaction = $("#new-reaction").val().trim();
-        reactions.push(newReaction);
+        let newReaction = $("#new-reaction").val().trim().toLowerCase();
+        console.log(newReaction);
+        if (newReaction != "") {
+            if ((reactions.indexOf(newReaction)) < 0) {
+                reactions.push(newReaction);
+            } else {
+                alert("Button Already Exists!!");
+            }
+        }
         $("#buttons").empty();
         createButtons();
         $("#new-reaction").val("");
@@ -123,7 +129,6 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '.fav', function () {
-        // $("#fav-div").show();
         if ((favorites.indexOf($(this).attr("data-animate"))) < 0) {
             favorites.push($(this).attr("data-animate"));
         }
