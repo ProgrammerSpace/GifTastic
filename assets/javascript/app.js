@@ -28,7 +28,13 @@ function displayGifs() {
 
         for (let i = 0; i < response.data.length; i++) {
             let newGifDiv = $("<div>");
-            newGifDiv.addClass("float-left m-2");
+            newGifDiv.addClass("float-left m-2 border rounded p-2");
+
+            // let title = $("<p>");
+            // title.text(response.data[i].title);
+            // title.addClass("card-title");
+            // newGifDiv.append(title);
+
             let gif = $("<img>");
             gif.addClass("gif");
             gif.attr("width", "150");
@@ -44,12 +50,30 @@ function displayGifs() {
             rating.text("Rating: " + response.data[i].rating);
             newGifDiv.append(rating);
 
+            var aTag = $("<a>");
+            aTag.attr("href", response.data[i].images.original.url);
+            aTag.attr("download", "gif");
+            aTag.attr("data-toggle", "tooltip");
+            aTag.attr("data-placement", "top");
+            aTag.attr("title", "Use Internet Explorer for download to work appropriately!!");
+            var downloadBtn = $("<button>");
+            downloadBtn.attr("data-url", response.data[i].images.original.url)
+            downloadBtn.addClass("download btn btn-lg glyphicon glyphicon-download");
+            aTag.append(downloadBtn);
+            newGifDiv.append(aTag);
+
             $("#gifs-appear-here").append(newGifDiv);
         }
 
     });
 
 }
+
+setInterval(function () {
+    $('blink').each(function () {
+        $(this).toggle();
+    });
+}, 400);
 
 $(document).ready(function () {
     createButtons();
@@ -58,11 +82,9 @@ $(document).ready(function () {
 
         event.preventDefault();
         let newReaction = $("#new-reaction").val().trim();
-        var newBtn = $("<button>");
-        $(newBtn).text(newReaction);
-        newBtn.attr("data-name", newReaction);
-        newBtn.addClass("reaction btn btn-info m-1");
-        $("#buttons").append(newBtn);
+        reactions.push(newReaction);
+        $("#buttons").empty();
+        createButtons();
         $("#new-reaction").val("");
 
     });
@@ -80,5 +102,10 @@ $(document).ready(function () {
             $(this).attr("src", newSrc);
             $(this).attr("data-state", "still");
         }
+    });
+
+    $(document).on('click', '.download', function () {
+        var downloadId = $(this).attr("data-url");
+        console.log("url is: " + downloadId);
     });
 });

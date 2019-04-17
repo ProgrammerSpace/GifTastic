@@ -2,3 +2,11 @@ body {
     background-image: url("../images/bg.jpg");
     color: white;
 }
+.header {
+    font-family: cursive;
+    font-size: 18px;
+    color: yellow;
+}
+p {
+    text-align: center;
+}
