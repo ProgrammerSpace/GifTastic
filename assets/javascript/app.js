@@ -79,8 +79,8 @@ function updateFavorites() {
     for (let i = 0; i < favorites.length; i++) {
         var newFav = $("<img>");
         newFav.attr("src", favorites[i]);
-        newFav.attr("width", "150");
-        newFav.attr("height", "150");
+        newFav.attr("width", "100");
+        newFav.attr("height", "100");
         newFav.addClass("m-1")
         $(".favorites").append(newFav);
     }
@@ -94,7 +94,7 @@ setInterval(function () {
 
 $(document).ready(function () {
     createButtons();
-    $("#fav-div").hide();
+    // $("#fav-div").hide();
 
     $("#add-reaction").on("click", function () {
 
@@ -123,7 +123,7 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '.fav', function () {
-        $("#fav-div").show();
+        // $("#fav-div").show();
         if ((favorites.indexOf($(this).attr("data-animate"))) < 0) {
             favorites.push($(this).attr("data-animate"));
         }
