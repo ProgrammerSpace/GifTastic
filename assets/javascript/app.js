@@ -90,7 +90,7 @@ setInterval(function () {
     $('blink').each(function () {
         $(this).toggle();
     });
-}, 400);
+}, 500);
 
 $(document).ready(function () {
     createButtons();
@@ -104,7 +104,7 @@ $(document).ready(function () {
             if ((reactions.indexOf(newReaction)) < 0) {
                 reactions.push(newReaction);
             } else {
-                alert("Button Already Exists!!");
+                alert("It's up there already!!");
             }
         }
         $("#buttons").empty();
