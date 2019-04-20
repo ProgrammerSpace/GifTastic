@@ -15,7 +15,7 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-2.2.3.js"
         integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
-    <title>Document</title>
+    <title>GifTastic</title>
 </head>
 
 <body>
@@ -24,8 +24,8 @@
             <div class="col-10">
                 <div class="row">
                     <div class="col-4 my-5 header">
-                        <blink>**</blink><img src="assets/images/giphy.png" height="35" width="35">
-                        Grab some from Giphy!!<blink>**</blink>
+                        <img src="assets/images/giphy.png" height="35" width="35">
+                        Grab some from Giphy!!
                     </div>
                     <div id="buttons" class="col-8 my-5"></div>
                 </div>
@@ -37,13 +37,19 @@
 
                             <input id="add-reaction" type="submit" value="Add" class="btn btn-info m-1">
                         </form>
+                        <blink>
+                            <p class="glyphicon glyphicon-download m-2" style="color:white"> Download!</p><br>
+                            <p class="glyphicon glyphicon-star m-2" style="color:white"> Add to fav</p>
+                        </blink>
                     </div>
                     <div id="gifs-appear-here" class="col-9"></div>
                 </div>
             </div>
             <div class="col-2">
                 <div class="row p-5 mt-2" id="fav-div">
-                    <p style="font-weight:bolder">Your Favorite GIFs Appear here</p>
+                    <p style="font-weight:bolder">
+                        <blink>Your Favorite GIFs Appear here</blink>
+                    </p>
                     <div class="col-12 favorites"></div>
                 </div>
             </div>

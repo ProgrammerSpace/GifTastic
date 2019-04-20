@@ -13,3 +13,9 @@ body {
 p {
     text-align: center;
 }
+blink {
+    color: yellow;
+}
+.glyphicon {
+    color: black;
+}
